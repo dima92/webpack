@@ -15,6 +15,7 @@
   "author": "Dmitry Tkachenko",
   "license": "ISC",
   "devDependencies": {
+    "html-webpack-plugin": "^5.3.1",
     "webpack": "^5.25.0",
     "webpack-cli": "^4.5.0"
   }
