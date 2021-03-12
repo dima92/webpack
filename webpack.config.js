@@ -12,5 +12,13 @@ module.exports = {
             filename: "index.html",
             template: "./src/index.html"
         })
-    ]
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    }
 }
