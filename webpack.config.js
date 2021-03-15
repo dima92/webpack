@@ -2,6 +2,7 @@ const path = require('path')
 const HTMLPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require("terser-webpack-plugin")
 
 module.exports = {
     entry: './src/index.js',
@@ -14,6 +15,9 @@ module.exports = {
         minimizer: [
             new CssMinimizerPlugin({
                 test: /\.css$/i
+            }),
+            new TerserPlugin({
+                test: /\.js(\?.*)?$/i
             })
         ]
     },
@@ -36,6 +40,16 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             }
         ]
     }
